@@ -9,3 +9,7 @@ Stack:
 - RoomDb
 - Glide
 - kotlin-cotoutines 
+
+## Preview
+[<img src="screen1.png" alt="drawing" width="200"/>]()
+[<img src="screen2.png" alt="drawing" width="200"/>]()
