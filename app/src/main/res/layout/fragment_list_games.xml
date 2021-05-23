@@ -15,10 +15,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:src="@drawable/ic_baseline_reviews_24"
-        android:layout_height="wrap_content"/>
     <androidx.cardview.widget.CardView
         android:id="@+id/floatingRate"
         app:cardCornerRadius="27dp"

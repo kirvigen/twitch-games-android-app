@@ -8,7 +8,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.Window
+import android.widget.Button
 import com.kirvigen.templateapplication.R
+import kotlinx.android.synthetic.main.alert_rate_application.view.*
 
 class RateAlert(context: Context): Dialog(context) {
 
@@ -20,12 +22,12 @@ class RateAlert(context: Context): Dialog(context) {
         window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         setContentView(mView)
     }
-    fun setRateListener(a:(EasyAlert)->Unit):RateAlert{
-        mView
+
+    fun setRateListener(callback:(Float)->Unit):RateAlert{
+        mView.button.setOnClickListener {
+            callback(mView?.rating_bar?.rating?:0f)
+            this.dismiss()
+        }
         return this
     }
-    fun createAlert(){
-
-    }
-
 }

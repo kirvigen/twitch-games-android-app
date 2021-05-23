@@ -4,4 +4,6 @@
     <string name="internet_error">Нет подключения к интернету</string>
     <string name="refresh">Повторить</string>
     <string name="rate_us">Оцените нас</string>
+    <string name="send">Отправить</string>
+    <string name="thanks_rate">Спасибо за вашу оценку %.1f</string>
 </resources>
