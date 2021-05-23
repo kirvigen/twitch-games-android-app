@@ -2,7 +2,7 @@
 Android App for watching top games on Twitch
 
 Stack:
-- MVVVM
+- MVVM
 - Kotlin
 - Retrofit2
 - Koin
