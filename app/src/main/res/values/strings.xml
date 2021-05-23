@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TwitchGames</string>
+    <string name="empty_list">Список пуст</string>
+    <string name="internet_error">Нет подключения к интернету</string>
 </resources>

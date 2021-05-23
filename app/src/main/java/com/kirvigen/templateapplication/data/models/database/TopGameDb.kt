@@ -13,5 +13,7 @@ data class TopGameDb(
     @ColumnInfo(name="channels")
     var channels:Int,
     @ColumnInfo(name="viewers")
-    val viewers:Int
+    val viewers:Int,
+    @ColumnInfo(name="name")
+    val name:String
 )

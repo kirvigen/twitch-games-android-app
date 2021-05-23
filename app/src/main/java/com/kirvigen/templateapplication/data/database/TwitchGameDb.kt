@@ -10,6 +10,6 @@ import com.kirvigen.templateapplication.data.models.database.TopGameDb
     exportSchema = false
 )
 
-abstract class TwichGameDb : RoomDatabase() {
+abstract class TwitchGameDb : RoomDatabase() {
     abstract fun TopGamesDao(): TopGameDb
 }
