@@ -6,17 +6,18 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.kirvigen.templateapplication.data.models.database.TopGameDb
+import kotlinx.coroutines.Deferred
 
 
 @Dao
 interface TopGamesDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(listTopGames: List<TopGameDb>)
+    suspend fun insert(listTopGames: List<TopGameDb>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(topGameDb: TopGameDb)
+    suspend fun insert(topGameDb: TopGameDb)
 
     @Query("SELECT * FROM `topgamedb` ORDER BY viewers DESC")
-    fun getTopGames():List<TopGameDb>
+    suspend fun getTopGames():List<TopGameDb>
 }

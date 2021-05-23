@@ -3,6 +3,7 @@ package com.kirvigen.templateapplication.data.api
 import android.util.Log
 import retrofit2.Response
 import java.io.IOException
+import java.lang.Exception
 
 open class BaseRepository(private val TAG:String = "BaseRepository"){
 
@@ -25,8 +26,12 @@ open class BaseRepository(private val TAG:String = "BaseRepository"){
     }
 
     private suspend fun <T: Any> safeApiResult(call: suspend ()-> Response<T>, errorMessage: String) : Result<T>{
-        val response = call.invoke()
-        if(response.isSuccessful) return Result.Success(response.body()!!)
+        val response =try{
+            call.invoke()
+         }catch (e:Exception){
+             null
+         }
+        if(response?.isSuccessful == true) return Result.Success(response.body()!!)
 
         return Result.Error(errorMessage)
     }

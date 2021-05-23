@@ -16,25 +16,17 @@ class ListGameViewModel(private val twitchRepository: TwitchRepository):ViewMode
 
     fun getGames(limit:Int,offset:Int){
         viewModelScope.launch(Dispatchers.IO) {
-            val games = twitchRepository.getTopGames(limit,offset)
-            when(games){
+            when(val games = twitchRepository.getTopGames(limit,offset)){
                 is Result.Error ->{
-                    pushGames(games.data?: emptyList())
                     if(games.data == null || games.data.isEmpty()){
                         handleError.postValue(ErrorState.EMPTYLIST)
                     }else {
                         handleError.postValue(ErrorState.INTERNETERROR)
                     }
+                    topGames.postValue(games.data?: emptyList())
                 }
-                is Result.Success -> pushGames(games.data)
+                is Result.Success -> topGames.postValue(games.data)
             }
         }
     }
-
-    private fun pushGames(games:List<TopGameDb>){
-        val saveGames = topGames.value?.toMutableList()?: mutableListOf()
-        saveGames.addAll(games)
-        topGames.postValue(saveGames)
-    }
-
 }

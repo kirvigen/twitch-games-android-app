@@ -11,5 +11,5 @@ import com.kirvigen.templateapplication.data.models.database.TopGameDb
 )
 
 abstract class TwitchGameDb : RoomDatabase() {
-    abstract fun TopGamesDao(): TopGameDb
+    abstract fun TopGamesDao(): TopGamesDao
 }

@@ -4,14 +4,15 @@ import com.kirvigen.templateapplication.data.api.BaseRepository
 import com.kirvigen.templateapplication.data.api.Result
 import com.kirvigen.templateapplication.data.api.TwitchApi
 import com.kirvigen.templateapplication.data.database.TopGamesDao
-import com.kirvigen.templateapplication.data.database.TwitchGameDb
-import com.kirvigen.templateapplication.data.models.Top
 import com.kirvigen.templateapplication.data.models.TwitchGamesResponse
 import com.kirvigen.templateapplication.data.models.database.TopGameDb
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class TwitchRepository(
-    private val twitchApi: TwitchApi,
-    private val topGamesDao: TopGamesDao
+     val twitchApi: TwitchApi,
+     val topGamesDao: TopGamesDao
 ) : BaseRepository("TwitchRepository") {
 
     suspend fun getTopGames(limit: Int, offset: Int): Result<List<TopGameDb>> {
@@ -23,9 +24,12 @@ class TwitchRepository(
                     ).await()
                 },
                 errorMessage = "Error load TopGames"
-            ) ?: return Result.Error("", topGamesDao.getTopGames())
-
-        return Result.Success(toTopGameDb(response))
+            ) ?: return Result.Error("",topGamesDao.getTopGames())
+        val topGamesDb = toTopGameDb(response)
+        CoroutineScope(Dispatchers.IO).launch(Dispatchers.IO) {
+            topGamesDao.insert(topGamesDb)
+        }
+        return Result.Success(topGamesDb)
     }
 
     private fun toTopGameDb(twitchGamesResponse: TwitchGamesResponse): List<TopGameDb> {

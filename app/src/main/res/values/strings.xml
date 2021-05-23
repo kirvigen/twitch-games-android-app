@@ -2,4 +2,6 @@
     <string name="app_name">TwitchGames</string>
     <string name="empty_list">Список пуст</string>
     <string name="internet_error">Нет подключения к интернету</string>
+    <string name="refresh">Повторить</string>
+    <string name="rate_us">Оцените нас</string>
 </resources>
