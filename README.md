@@ -8,7 +8,7 @@ Stack:
 - Koin
 - RoomDb
 - Glide
-- kotlin-cotoutines 
+- kotlin-coroutines 
 
 ## Preview
 [<img src="screen1.png" alt="drawing" width="200"/>]()
